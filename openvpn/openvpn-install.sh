@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Perform hot backups of Oracle databases.
+# Install require OpenVpn packages.
 
 #set -x
 DIRNAME=`dirname $0`

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Perform hot backups of Oracle databases.
+# Config Network & Firewall
 
 #set -x
 DIRNAME=`dirname $0`
