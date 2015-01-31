@@ -1,3 +1,4 @@
+
 #!/bin/bash
 #
 # Config & Setup OpenVpn.
