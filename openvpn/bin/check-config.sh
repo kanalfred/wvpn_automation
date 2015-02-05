@@ -12,8 +12,6 @@ source $DIRNAME/../setup.conf
 #    Config Check
 #############################
 function check_config(){
-    echo "require check"
-
     # Check Server primary ip address
     if ! [ -n "$ipAddress" ]; then
         #test ! -n "$ipAddress" && echo "ipAddress is not set in setup.conf, Go Away!" && exit 1
@@ -24,10 +22,11 @@ function check_config(){
     if ! [ -n "$keyCountry" ] && [ -n "keyProvince" ] && [ -n "keyCity" ] &&  [ -n "keyOrg" ] &&  [ -n "keyOrg" ]  &&  [ -n "keyEmail" ]  &&  [ -n "keyOu" ] && [ -n "keyName" ]; then
          echo "Easy RSA  is not setup in setup.conf, Go Away!" && exit 1
     fi
+    echo "Config Check Passed!"
 }
 
 function main(){
-    echo "check-config main" 
+    printf "\n---------- CHECK CONFIG ----------\n" 
     check_config
 }
 

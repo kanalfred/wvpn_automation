@@ -19,7 +19,6 @@ source $DIRNAME/setup.conf
 #    Config Check
 #############################
 function check_config(){
-    echo "config check"
     $DIRNAME/bin/check-config.sh
 }
 
@@ -27,36 +26,34 @@ function check_config(){
 #    Requirement Check
 #############################
 function check_require(){
-    echo "require check"
-    #$DIRNAME/bin/check-require.sh
+    $DIRNAME/bin/check-require.sh
 }
 
 ##############################
 #    Setup Openvpn
 ##############################
 function setup_openvpn(){
-    echo "opevn setup"
-    ## Install require packages
-    #$DIRNAME/bin/openvpn-install.sh
-    #
-    ## Config setup 
+    # Install require packages
+    $DIRNAME/bin/openvpn-install.sh
+    
+   ## Config setup 
     #ipAddress=$ipAddress $DIRNAME/bin/openvpn-config.sh
-    #$DIRNAME/bin/openvpn-config.sh
+    $DIRNAME/bin/openvpn-config.sh
     #
     ## Network setup
     #$DIRNAME/bin/openvpn-network.sh
 }
 
 function main(){
-    echo "main" 
+    printf "Watervpn OpenVpn setup started ................\n" 
     check_config
-    #check_require
-    #setup_openvpn
+    check_require
+    setup_openvpn
 }
 
 main
 
 exit 1
 # Test requirement
-test -z "$1" && echo "please pass in paremter" && exit 1
-echo "testing $0"
+#test -z "$1" && echo "please pass in paremter" && exit 1
+#echo "testing $0"

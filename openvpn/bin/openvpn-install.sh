@@ -10,30 +10,31 @@ DIRNAME=$(dirname `readlink -f -- $0`)
 #    Install Openvpn 
 #############################
 function install_openvpn(){
-    echo Installing openvpn
     # Todo: specify intall openvpn version
-    test ! -d /etc/openvpn && sudo yum -y install openvpn bridge-utils && echo "Installed openvpn package"
-    test ! -e /etc/openvpn/server.conf && sudo cp $DIRNAME../conf/server.conf /etc/openvpn/ && echo "Copied server.conf to /etc/openvpn/"
+    test ! -d /etc/openvpn && sudo yum -y install openvpn bridge-utils && echo "Installing openvpn package ..."
+    test ! -e /etc/openvpn/server.conf && sudo cp $DIRNAME../conf/server.conf /etc/openvpn/ && echo "Copy server.conf to /etc/openvpn/"
+    echo "Done! installed OpenVpn package"
 }
 
 #############################
 #    Install Easy RSA 
 #############################
 function install_easyrsa(){
-    echo Installing easy-rsa
-    test ! -d /usr/share/easy-rsa && sudo yum -y install easy-rsa && echo "Installed easy rsa package"
+    test ! -d /usr/share/easy-rsa && sudo yum -y install easy-rsa && echo "Installing easy rsa package"
+    echo "Done! installed Easy-RSA package"
 }
 
 #############################
 #    Install Radius plugin
 #############################
 function install_radius_plugin(){
-    echo Installing radius plugin
-    test ! -e /etc/openvpn/radiusplugin.so && cp $DIRNAME/packages/radiusplugin/radiusplugin.so /etc/openvpn/ && echo "Copied radiusplugin.so to /etc/openvpn"
-    test ! -e /etc/openvpn/radiusplugin.cnf && cp $DIRNAME/packages/radiusplugin/radiusplugin.cnf /etc/openvpn/ && echo "Copied radiusplugin.cnf to /etc/openvpn"
+    test ! -e /etc/openvpn/radiusplugin.so && cp $DIRNAME/packages/radiusplugin/radiusplugin.so /etc/openvpn/ && echo "Copy radiusplugin.so to /etc/openvpn"
+    test ! -e /etc/openvpn/radiusplugin.cnf && cp $DIRNAME/packages/radiusplugin/radiusplugin.cnf /etc/openvpn/ && echo "Copy radiusplugin.cnf to /etc/openvpn"
+    echo "Done! installed OpenVpn Radius plugin apackage"
 }
 
 function main(){
+    printf "\n---------- INSTALL OPENVPN PACKAGE ----------\n" 
     install_openvpn
     install_easyrsa
     install_radius_plugin

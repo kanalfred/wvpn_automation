@@ -20,6 +20,7 @@ function check_os(){
     if ! [[ $CENTOS_VERSION =~ ^CentOS[[:space:]]Linux[[:space:]]release[[:space:]]7.* ]]; then
         echo 'OpenVpn script only support centos version 7, go away!' && exit 1
     fi
+    echo "OS Check Passed!"
 }
 
 #############################
@@ -29,7 +30,10 @@ function check_internet(){
     # Check internet connection
     wget -q --tries=10 --timeout=20 --spider http://google.com
     # $? find error code of last execute command
-    test ! -eq 0 && echo "No internet connection, go away!" && exit 1
+    if ! [[ $? -eq 0 ]]; then
+        echo "No internet connection, go away!" && exit 1
+    fi
+    echo "Interent Check Passed!"
 }
 
 #############################
@@ -39,11 +43,13 @@ function check_repo(){
     # Check EPEL repo
     EPEL=`yum repolist epel | grep epel`
     if [ -z "$EPEL" ]; then
-        # Install epel repo
-        # Todo: download epel from our server
-        #wget -O /tmp/epel-release-7-5.noarch.rpm http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+        echo "EPEL repo is not install, EPEL installing started"
+        # Install epel from repo
+        ##wget -O /tmp/epel-release-7-5.noarch.rpm http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+        # Install epel form directry
         sudo yum -y install $DIRNAME/../packages/repo/epel-release-7-5.noarch.rpm
     fi
+    echo "Repo Check Passed!"
 }
 
 #############################
@@ -51,12 +57,13 @@ function check_repo(){
 #############################
 function check_package(){
     # Check requirment packages 
-    test ! -f `which wget` && sudo yum -y install wget && echo "Installed missing wget package"
-    test ! -f `which git` && sudo yum -y install git && echo "Installed missing git package"
+    test ! -f `which wget` && sudo yum -y install wget && echo "Installng missing wget package"
+    test ! -f `which git` && sudo yum -y install git && echo "Installing missing git package"
+    echo "Package Check Passed!"
 }
 
 function main(){
-    echo "check-config main" 
+    printf "\n---------- CHECK REQUIREMENT ----------\n" 
     check_os
     check_internet
     check_repo
