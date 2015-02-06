@@ -12,7 +12,7 @@ NAS-Port-Type=5
 
 # The NAS IP address which is sent to the RADIUS server
 #NAS-IP-Address=127.0.0.1
-NAS-IP-Address=198.50.156.37
+NAS-IP-Address=%server-ip%
 
 # Path to the OpenVPN configfile. The plugin searches there for
 # client-config-dir PATH   (searches for the path)
@@ -68,18 +68,18 @@ nonfatalaccounting=false
 server
 {
 	# The UDP port for radius accounting.
-	acctport=1813
+	acctport=%radiusAcctport%
 	# The UDP port for radius authentication.
-	authport=1812
+	authport=%radiusAuthport%
 	# The name or ip address of the radius server.
 	#name=192.168.0.153
-	name=radius.watervpn.com
+	name=%radiusIpAddress%
 	# How many times should the plugin send the if there is no response?
 	retry=1
 	# How long should the plugin wait for a response?
 	wait=1
 	# The shared secret.
-	sharedsecret=landmark5!
+	sharedsecret=%radiusSharedsecret%
 }
 
 #server
