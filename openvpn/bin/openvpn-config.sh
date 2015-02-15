@@ -23,12 +23,9 @@ function check_etc_path(){
 #    Server.conf 
 #############################
 function config_openvpn(){
-echo "$etcPath"
-exit 1
     # server.conf template path
     serverConfTemplatePath="$DIRNAME/../conf/openvpn/server.conf"
     serverConfPath="$etcPath/openvpn"
-    #serverConfPath="$DIRNAME/../test-etc/openvpn"
 
     # copy server.conf template
     sudo yes | cp $serverConfTemplatePath $serverConfPath/ && echo "Copy $serverConfTemplatePath to $serverConfPath"
@@ -36,7 +33,7 @@ exit 1
     # find and replace %server-ip% in server.conf
     if [ -n "$ipAddress" ] && [ -e "$serverConfPath/server.conf" ]; then
         echo "$serverConfPath ip address updated to: $ipAddress"
-        sed -i "s/%server-ip%/$serverIp/g" "$serverConfPath/server.conf"
+        sed -i "s/%server-ip%/$ipAddress/g" "$serverConfPath/server.conf"
     else
         echo "$serverConfPath/server.conf ip address is NOT updated, missing ipAddress or can't find server.conf file"
     fi
@@ -46,6 +43,7 @@ exit 1
 #    Key & Cert Generation
 #############################
 function config_easyras(){
+echo "config_easyras funciton"
 echo "$etcPath"
 exit 1
 
