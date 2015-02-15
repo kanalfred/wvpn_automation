@@ -44,11 +44,32 @@ function setup_openvpn(){
     #$DIRNAME/bin/openvpn-network.sh
 }
 
+
+##############################
+#    Success Message
+##############################
+function success_message(){
+    printf "\n\n" 
+    echo "#######################################"
+    echo "#    OpenVPN setup is done! "
+    echo "#######################################"
+    echo "" 
+    echo "Please add the following lines on radius server to finish the seteup"
+    echo "Change the [shortname] to your server label"
+    echo  "" 
+    echo "client 198.50.156.37 {
+             secret          = landmark5!
+             shortname       = canada1
+             nastype         = other
+        }"
+}
+
 function main(){
     printf "Watervpn OpenVpn setup started ................\n" 
     check_config
     check_require
-    setup_openvpn
+    #setup_openvpn
+    success_message
 }
 
 main

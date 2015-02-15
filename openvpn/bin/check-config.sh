@@ -22,6 +22,11 @@ function check_config(){
     if ! [ -n "$keyCountry" ] && [ -n "keyProvince" ] && [ -n "keyCity" ] &&  [ -n "keyOrg" ] &&  [ -n "keyOrg" ]  &&  [ -n "keyEmail" ]  &&  [ -n "keyOu" ] && [ -n "keyName" ]; then
          echo "Easy RSA  is not setup in setup.conf, Go Away!" && exit 1
     fi
+
+    # Check etc path
+    if ! [ -n "$etcPath" ]; then
+         echo "etc path  is not setup in setup.conf, Go Away!" && exit 1
+    fi
     echo "Config Check Passed!"
 }
 

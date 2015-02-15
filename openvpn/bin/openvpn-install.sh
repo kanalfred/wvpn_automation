@@ -29,7 +29,7 @@ function install_easyrsa(){
 #############################
 function install_radius_plugin(){
     test ! -e /etc/openvpn/radiusplugin.so && cp $DIRNAME/packages/radiusplugin/radiusplugin.so /etc/openvpn/ && echo "Copy radiusplugin.so to /etc/openvpn"
-    test ! -e /etc/openvpn/radiusplugin.cnf && cp $DIRNAME/packages/radiusplugin/radiusplugin.cnf /etc/openvpn/ && echo "Copy radiusplugin.cnf to /etc/openvpn"
+    #test ! -e /etc/openvpn/radiusplugin.cnf && cp $DIRNAME/packages/radiusplugin/radiusplugin.cnf /etc/openvpn/ && echo "Copy radiusplugin.cnf to /etc/openvpn"
     echo "Done! installed OpenVpn Radius plugin apackage"
 }
 
