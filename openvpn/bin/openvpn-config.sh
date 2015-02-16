@@ -43,15 +43,8 @@ function config_openvpn(){
 #    Key & Cert Generation
 #############################
 function config_easyras(){
-echo "config_easyras funciton"
-echo "$etcPath"
-exit 1
-
-    #easyRsaPath="/etc/openvpn/easy-rsa"
     easyRsaPath="$etcPath/openvpn/easy-rsa"
     openvpnPath="$etcPath/openvpn"
-    #easyRsaPath="$DIRNAME/../test-etc/openvpn/easy-rsa"
-    #openvpnPath="$DIRNAME/../test-etc/openvpn"
 
   # #if [ ! -d "$easyRsaPath/keys" ]; then
         echo "Copy easy RSA key libs to $easyRsaPath"
@@ -76,16 +69,21 @@ exit 1
         echo "Done! Config Easy RAS" 
     fi   
 
+    # Prepare Generate Easy RAS Env & default Easy RAS values
+    cd $easyRsaPath 
+    source ./vars
+    yes | source ./clean-all
+
     # Generate & Config easyras keys
-    # Calling config_easyras_keys function
+    # Function Call config_easyras_keys
     config_easyras_keys
 }
 
 function config_easyras_keys(){
-    #config_ca_key
+    config_ca_key
     config_server_key
     config_hd_key
-    # we don't need generate client key here
+    # we don't need generate client key here, we will have Websever to generate client key on the fly
 }
 
 function config_ca_key(){
@@ -93,14 +91,15 @@ function config_ca_key(){
     # We don't need to copy ca.key private we only need ca.crt
     yes | cp $DIRNAME/../keys/ca.crt $easyRsaPath/keys/
     yes | cp $DIRNAME/../keys/ca.key $easyRsaPath/keys/
-    yes | cp $DIRNAME/../keys/ca.crt $openvpnPath/keys/
+    echo "Done! Copy ca keys to [$easyRsaPath/keys/]" 
 }
 
 function config_server_key(){
     cd $easyRsaPath 
-    # generate_server_key
-    ./build-key-server server
+    # generate_server_key add --batch that won't intract ask user from input
+    ./build-key-server --batch server
     yes | cp $easyRsaPath/keys/server.crt $openvpnPath
+    echo "Done! Generated new [server] keys and Copy them to [$easyRsaPath/keys/]" 
 }
 
 function config_hd_key(){
@@ -139,7 +138,7 @@ function main(){
     printf "\n---------- CONFIGING OPENVPN ----------\n" 
     check_etc_path
     config_openvpn
-    #config_easyras
+    config_easyras
     #config_radius_plugin
 }
 
