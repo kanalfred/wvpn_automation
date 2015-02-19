@@ -127,11 +127,20 @@ function config_radius_plugin(){
 
     #remove radiusLine in sever & sed server.conf change ip address to include radius plugin
     # add client-config-dir ccd to sever.conf
+    egrep -q "^client-config-dir\s?ccd" "$openvpnPath/server.conf" || echo "client-config-dir ccd" >> "$openvpnPath/server.conf"
 
     # mkdir /etc/openvpn/ccd
     test ! -d $openvpnPath/cdd && mkdir $openvpnPath/cdd && echo "Creating ccd dir under $openvpnPath/"
+}
 
-    # sed openvpn-config.sh change ip address
+#############################
+#    Enable Service
+#############################
+function enable_service(){
+    # Register as service
+    systemctl -f enable openvpn@server.service
+    # Start servcie
+    systemctl start openvpn@server.service
 }
 
 function main(){
@@ -139,7 +148,8 @@ function main(){
     check_etc_path
     config_openvpn
     config_easyras
-    #config_radius_plugin
+    config_radius_plugin
+    #enable_service
 }
 
 main

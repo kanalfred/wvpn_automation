@@ -36,12 +36,12 @@ function setup_openvpn(){
     # Install require packages
     $DIRNAME/bin/openvpn-install.sh
     
-   ## Config setup 
+    # Config Network 
+    #$DIRNAME/bin/openvpn-network.sh
+    
+    # Config Openvpn 
     #ipAddress=$ipAddress $DIRNAME/bin/openvpn-config.sh
     $DIRNAME/bin/openvpn-config.sh
-    #
-    ## Network setup
-    #$DIRNAME/bin/openvpn-network.sh
 }
 
 

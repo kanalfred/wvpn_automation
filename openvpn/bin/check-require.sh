@@ -9,6 +9,10 @@ DIRNAME=$(dirname `readlink -f -- $0`)
 source $DIRNAME/../setup.conf
 
 #############################
+#    Check User permission
+#############################
+
+#############################
 #    OS Check
 #############################
 function check_os(){
