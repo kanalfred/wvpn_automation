@@ -149,7 +149,7 @@ function main(){
     config_openvpn
     config_easyras
     config_radius_plugin
-    #enable_service
+    enable_service
 }
 
 main

@@ -24,7 +24,7 @@ function config_network(){
     sysctlPath="$etcPath/sysctl.conf"
     egrep -q "net.ipv4.ip_forward\s?=\s?1" "$sysctlPath" || echo "net.ipv4.ip_forward = 1" >> "$sysctlPath"
     # Restart network service
-    #systemctl restart network.service
+    systemctl restart network.service
 }
 
 #############################
@@ -36,15 +36,15 @@ function config_firewall(){
     cp "$DIRNAME/../conf/firewalld/zones/vpn.xml" "$etcPath/firewalld/zones/vpn.xml"
     # Set default zone
     firewall-cmd --set-default-zone=vpn
-    # Add Openvpn firewall rules
-    firewall-cmd --permanent --add-service openvpn
-    firewall-cmd --permanent --add-masquerade
+    # Add Openvpn firewall rules (we don't need the following line, since is defined in vpn.xml)
+    #firewall-cmd --permanent --add-service openvpn
+    #firewall-cmd --permanent --add-masquerade
 }
 
 function main(){
     printf "\n---------- CONFIG OPENVPN NETWORK ----------\n" 
+    config_firewall
     config_network
-   # config_firewall
 }
 
 main

@@ -37,7 +37,7 @@ function setup_openvpn(){
     $DIRNAME/bin/openvpn-install.sh
     
     # Config Network 
-    #$DIRNAME/bin/openvpn-network.sh
+    $DIRNAME/bin/openvpn-network.sh
     
     # Config Openvpn 
     #ipAddress=$ipAddress $DIRNAME/bin/openvpn-config.sh
@@ -54,7 +54,7 @@ function success_message(){
     echo "#    OpenVPN setup is done! "
     echo "#######################################"
     echo "" 
-    echo "Please add the following lines on radius server to finish the seteup"
+    echo "Please add the following lines on radius server [/etc/raddb/clients.conf] to finish the seteup"
     echo "Change the [shortname] to your server label"
     echo  "" 
     echo "client 198.50.156.37 {
@@ -68,7 +68,7 @@ function main(){
     printf "Watervpn OpenVpn setup started ................\n" 
     check_config
     check_require
-    #setup_openvpn
+    setup_openvpn
     success_message
 }
 
