@@ -91,6 +91,7 @@ function config_ca_key(){
     # We don't need to copy ca.key private we only need ca.crt
     yes | cp $DIRNAME/../keys/ca.crt $easyRsaPath/keys/
     yes | cp $DIRNAME/../keys/ca.key $easyRsaPath/keys/
+    yes | cp $DIRNAME/../keys/ca.crt $openvpnPath
     echo "Done! Copy ca keys to [$easyRsaPath/keys/]" 
 }
 
@@ -99,6 +100,7 @@ function config_server_key(){
     # generate_server_key add --batch that won't intract ask user from input
     ./build-key-server --batch server
     yes | cp $easyRsaPath/keys/server.crt $openvpnPath
+    yes | cp $easyRsaPath/keys/server.key $openvpnPath
     echo "Done! Generated new [server] keys and Copy them to [$easyRsaPath/keys/]" 
 }
 
@@ -130,7 +132,7 @@ function config_radius_plugin(){
     egrep -q "^client-config-dir\s?ccd" "$openvpnPath/server.conf" || echo "client-config-dir ccd" >> "$openvpnPath/server.conf"
 
     # mkdir /etc/openvpn/ccd
-    test ! -d $openvpnPath/cdd && mkdir $openvpnPath/cdd && echo "Creating ccd dir under $openvpnPath/"
+    test ! -d $openvpnPath/ccd && mkdir $openvpnPath/ccd && echo "Creating ccd dir under $openvpnPath/"
 }
 
 #############################
@@ -141,6 +143,7 @@ function enable_service(){
     systemctl -f enable openvpn@server.service
     # Start servcie
     systemctl start openvpn@server.service
+    echo "Started Openvpn@server.service\n" 
 }
 
 function main(){
