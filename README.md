@@ -6,3 +6,4 @@
 3. cd ~/script
 4. git clone http://git.watervpn.com/root/automation.git
 5. cd automation/openvpn/
+6. ./setup.sh
