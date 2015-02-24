@@ -35,13 +35,14 @@ function check_require(){
 function setup_openvpn(){
     # Install require packages
     $DIRNAME/bin/openvpn-install.sh
+
+    # Config Openvpn 
+    #ipAddress=$ipAddress $DIRNAME/bin/openvpn-config.sh
+    $DIRNAME/bin/openvpn-config.sh
     
     # Config Network 
     $DIRNAME/bin/openvpn-network.sh
     
-    # Config Openvpn 
-    #ipAddress=$ipAddress $DIRNAME/bin/openvpn-config.sh
-    $DIRNAME/bin/openvpn-config.sh
 }
 
 
