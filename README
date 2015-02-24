@@ -1,6 +1,6 @@
-#Automation
-##OpenVpn
-###Setup
+# Automation
+## OpenVpn
+### Setup
 1. mkdir ~/script
 2. yum -y install git
 3. cd ~/script
