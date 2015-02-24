@@ -58,7 +58,7 @@ function success_message(){
     echo "Please add the following lines on radius server [/etc/raddb/clients.conf] to finish the seteup"
     echo "Change the [shortname] to your server label"
     echo  "" 
-    echo "client 198.50.156.37 {
+    echo "client $ipAddress {
              secret          = landmark5!
              shortname       = canada1
              nastype         = other
