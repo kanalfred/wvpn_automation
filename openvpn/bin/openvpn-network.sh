@@ -35,14 +35,17 @@ function config_firewall(){
     #sudo firewall-cmd --reload
     # Create zone file
     test -d "$etcPath/firewalld/zones" || mkdir -p "$etcPath/firewalld/zones"
+    printf "\nCreate vpn firewalld zone\n" 
     cp "$DIRNAME/../conf/firewalld/zones/vpn.xml" "$etcPath/firewalld/zones/vpn.xml"
+    # Reload firewall to pick up new added vpn.xml zone file
     sudo firewall-cmd --reload
+    printf "\nRealod firewall\n" 
     # Set default zone
     firewall-cmd --set-default-zone=vpn
+    printf "\nSet vpn as defualt firewalld zone\n" 
     # Add Openvpn firewall rules (we don't need the following line, since is defined in vpn.xml)
     #firewall-cmd --permanent --add-service openvpn
     #firewall-cmd --permanent --add-masquerade
-    # Reload firewall
 }
 
 function main(){

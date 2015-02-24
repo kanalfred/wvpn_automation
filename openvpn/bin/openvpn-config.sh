@@ -143,7 +143,7 @@ function enable_service(){
     systemctl -f enable openvpn@server.service
     # Start servcie
     systemctl start openvpn@server.service
-    echo "Started Openvpn@server.service\n" 
+    printf "\nStared Openvpn@server.service\n" 
 }
 
 function main(){
