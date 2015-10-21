@@ -57,6 +57,7 @@ function success_message(){
     echo "" 
     echo "Please add the following lines on radius server [/etc/raddb/clients.conf] to finish the seteup"
     echo "Change the [shortname] to your server label"
+    echo "Please use (service radiusd restart) instead of (reload) on radius server"
     echo  "" 
     echo "client $ipAddress {
              secret          = landmark5!
