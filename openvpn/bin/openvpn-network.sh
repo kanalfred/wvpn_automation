@@ -33,6 +33,9 @@ function config_network(){
 function config_firewall(){
     # Reload firewall
     #sudo firewall-cmd --reload
+    # Init firewalld
+    sudo systemctl enable firewalld
+    sudo systemctl restart firewalld
     # Create zone file
     test -d "$etcPath/firewalld/zones" || mkdir -p "$etcPath/firewalld/zones"
     printf "\nCreate vpn firewalld zone\n" 

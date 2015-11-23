@@ -61,17 +61,27 @@ function check_repo(){
 #############################
 function check_package(){
     # Check requirment packages 
-    test ! -f `which wget` && sudo yum -y install wget && echo "Installng missing wget package"
-    test ! -f `which git` && sudo yum -y install git && echo "Installing missing git package"
+    if ! rpm -qa | grep -qw wget; then
+        sudo yum -y install wget && echo "Installng missing wget package"
+    fi
+    if ! rpm -qa | grep -qw git; then
+        sudo yum -y install git && echo "Installng missing git package"
+    fi
+    if ! rpm -qa | grep -qw firewalld; then
+        sudo yum -y install firewalld && echo "Installng missing firewalld package"
+    fi
+    #test ! -f `which wget` && sudo yum -y install wget && echo "Installng missing wget package"
+    #test ! -f `which git` && sudo yum -y install git && echo "Installing missing git package"
+    #test ! -f `which firewalld` && sudo yum -y install firewalld && echo "Installing missing firewalld package"
     echo "Package Check Passed!"
 }
 
 function main(){
     printf "\n---------- CHECK REQUIREMENT ----------\n" 
     check_os
+    check_package
     check_internet
     check_repo
-    check_package
 }
 
 main

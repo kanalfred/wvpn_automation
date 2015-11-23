@@ -56,6 +56,7 @@ function success_message(){
     echo "#######################################"
     echo "" 
     echo "Please add the following lines on radius server [/etc/raddb/clients.conf] to finish the seteup"
+    echo "Make sure to use openvpn public ip address in clients.conf"
     echo "Change the [shortname] to your server label"
     echo "Please use (service radiusd restart) instead of (reload) on radius server"
     echo  "" 

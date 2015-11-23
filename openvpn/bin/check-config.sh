@@ -14,7 +14,6 @@ source $DIRNAME/../setup.conf
 function check_config(){
     # Check Server primary ip address
     if ! [ -n "$ipAddress" ]; then
-        #test ! -n "$ipAddress" && echo "ipAddress is not set in setup.conf, Go Away!" && exit 1
          echo "ipAddress is not setup in setup.conf, Go Away!" && exit 1
     fi
 

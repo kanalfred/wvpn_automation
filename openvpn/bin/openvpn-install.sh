@@ -4,15 +4,15 @@
 
 #set -x
 DIRNAME=$(dirname `readlink -f -- $0`)
-#source $DIRNAME/setup.conf
+source $DIRNAME/../setup.conf
 
 #############################
 #    Install Openvpn 
 #############################
 function install_openvpn(){
-    # Todo: specify intall openvpn version
     test ! -d /etc/openvpn && sudo yum -y install openvpn bridge-utils && echo "Installing openvpn package ..."
-    #test ! -e /etc/openvpn/server.conf && sudo cp $DIRNAME../conf/openvpn/server.conf /etc/openvpn/ && echo "Copy server.conf to /etc/openvpn/"
+    # Todo: specify intall openvpn version
+    #test ! -d /etc/openvpn && sudo yum -y install openvpn-$openvpnVersion bridge-utils-$bridgeUtilsVersion && echo "Installing openvpn package ..."
     echo "Done! installed OpenVpn package"
 }
 

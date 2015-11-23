@@ -31,12 +31,12 @@ function config_openvpn(){
     sudo yes | cp $serverConfTemplatePath $serverConfPath/ && echo "Copy $serverConfTemplatePath to $serverConfPath"
 
     # find and replace %server-ip% in server.conf
-    if [ -n "$ipAddress" ] && [ -e "$serverConfPath/server.conf" ]; then
-        echo "$serverConfPath ip address updated to: $ipAddress"
-        sed -i "s/%server-ip%/$ipAddress/g" "$serverConfPath/server.conf"
-    else
-        echo "$serverConfPath/server.conf ip address is NOT updated, missing ipAddress or can't find server.conf file"
-    fi
+    #if [ -n "$ipAddress" ] && [ -e "$serverConfPath/server.conf" ]; then
+    #    echo "$serverConfPath ip address updated to: $ipAddress"
+    #    sed -i "s/%server-ip%/$ipAddress/g" "$serverConfPath/server.conf"
+    #else
+    #    echo "$serverConfPath/server.conf ip address is NOT updated, missing ipAddress or can't find server.conf file"
+    #fi
 }
 
 #############################
