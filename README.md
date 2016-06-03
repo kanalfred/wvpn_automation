@@ -12,3 +12,4 @@
 3. Make sure firewalld is install 
    ## to install
    sudo yum install firewalld
+   Remove /etc/openvpn/ccd dir
