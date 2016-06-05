@@ -129,10 +129,12 @@ function config_radius_plugin(){
 
     #remove radiusLine in sever & sed server.conf change ip address to include radius plugin
     # add client-config-dir ccd to sever.conf
-    egrep -q "^client-config-dir\s?ccd" "$openvpnPath/server.conf" || echo "client-config-dir ccd" >> "$openvpnPath/server.conf"
+
+    # Enable following two lines  when using radius ippool (Otherwise cause vpn ip collusion) 
+    #egrep -q "^client-config-dir\s?ccd" "$openvpnPath/server.conf" || echo "client-config-dir ccd" >> "$openvpnPath/server.conf"
 
     # mkdir /etc/openvpn/ccd
-    test ! -d $openvpnPath/ccd && mkdir $openvpnPath/ccd && echo "Creating ccd dir under $openvpnPath/"
+    #test ! -d $openvpnPath/ccd && mkdir $openvpnPath/ccd && echo "Creating ccd dir under $openvpnPath/"
 }
 
 #############################

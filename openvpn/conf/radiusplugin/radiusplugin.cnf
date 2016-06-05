@@ -75,9 +75,9 @@ server
 	#name=192.168.0.153
 	name=%radiusIpAddress%
 	# How many times should the plugin send the if there is no response?
-	retry=1
+	retry=30
 	# How long should the plugin wait for a response?
-	wait=1
+	wait=10
 	# The shared secret.
 	sharedsecret=%radiusSharedsecret%
 }
