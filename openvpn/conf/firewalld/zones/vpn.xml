@@ -5,5 +5,6 @@
   <service name="dhcpv6-client"/>
   <service name="ssh"/>
   <service name="openvpn"/>
+  <service name="http"/>
   <masquerade/>
 </zone>
